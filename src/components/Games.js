@@ -62,7 +62,7 @@ class Games extends React.Component {
             </form>
             <hr/>
             <div className="titleRow">
-            <strong className="gameName">Title</strong><strong className="gameConsole">Preferred Platform</strong><strong className="gameRating">Rating</strong>
+            <strong className="gameName">Title</strong><strong className="gameConsole">Preferred Platform</strong><strong className="gameRating">Ratingsss</strong>
             </div>
             <hr className="linebreak" />
             {this.props.games.map(function(game,i){
