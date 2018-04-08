@@ -37,6 +37,8 @@ class App extends Component {
     var new_user = {"name": uname, "pword": pword};
     //console.log(new_user);
     this.props.actions.saveUser(new_user);
+    this.setState({loggedIn: true});
+    this.setState({curruser: uname});
   }
 
   render() {
