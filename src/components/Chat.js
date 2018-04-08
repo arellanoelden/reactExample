@@ -1,9 +1,9 @@
 import React from 'react';
 import Login from './Login';
+import SignUp from './SignUp';
 import * as messageActions from '../actions/MessageActions';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import toastr from 'toastr';
 
 class Chat extends React.Component {
 
@@ -34,10 +34,15 @@ class Chat extends React.Component {
     }
 
     render() {
-      /*if(this.props.state.loggedIn === false) {
-        return <div><Login login={this.props.state.login} /></div>;
+      if(this.props.state && this.props.state.loggedIn === false) {
+        return (
+          <div>
+            <Login login={this.props.state.login} />
+            <SignUp signUp={this.props.state.signUp} />
+          </div>
+        );
       }
-      else {*/
+      else {
         return(
           <div>
             <hr/>   
@@ -64,7 +69,7 @@ class Chat extends React.Component {
             </form>
           </div>
         );
-      //}
+      }
     }
 }
 

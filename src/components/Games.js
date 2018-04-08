@@ -1,10 +1,10 @@
 import React from 'react';
 import Game from './Game';
 import Login from './Login';
+import SignUp from './SignUp';
 import * as gameActions from '../actions/gameActions';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import toastr from 'toastr';
 
 class Games extends React.Component {
 
@@ -13,9 +13,13 @@ class Games extends React.Component {
         //this.state = {
         //  games: [["Halo 5","XBOX ONE","4/5"],["Fortnite","PC","4.5/5"],["Overwatch","PC","5/5"]]
         //}
-        
+        this.games = props.games;
         this.deleteGame = this.deleteGame.bind(this);
         this.saveGame = this.saveGame.bind(this);
+    }
+  
+    componentWillReceiveProps() {
+      //console.log(this.props)
     }
 
     saveGame(event) {
@@ -36,12 +40,15 @@ class Games extends React.Component {
 
 
     render() {
-      //this.setState({games:this.props.games});
-     // if(this.props.state.loggedIn === false) {
-     //   return <div><Login login={this.props.state.login} /></div>;
-     // }
-     // else {
-       console.log(this.props); 
+      if(this.props.state && this.props.state.loggedIn === false) {
+        return (
+          <div>
+            <Login login={this.props.state.login} />
+            <SignUp signUp={this.props.state.signUp} />
+          </div>
+        );
+      }
+      else {
         return (
           <div>
             <hr/>
@@ -62,7 +69,7 @@ class Games extends React.Component {
             </form>
             <hr/>
             <div className="titleRow">
-            <strong className="gameName">Title</strong><strong className="gameConsole">Preferred Platform</strong><strong className="gameRating">Ratingsss</strong>
+            <strong className="gameName">Title</strong><strong className="gameConsole">Preferred Platform</strong><strong className="gameRating">Rating</strong>
             </div>
             <hr className="linebreak" />
             {this.props.games.map(function(game,i){
@@ -71,7 +78,7 @@ class Games extends React.Component {
           </div>
         );
       }
-    //}
+    }
 }
 
 function mapStateToProps(state, ownProps) {

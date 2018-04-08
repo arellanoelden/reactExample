@@ -1,7 +1,6 @@
 export default {
-  authors: [],
-  courses: [],
   games: [],
   messages: [],
+  users: [],
   ajaxCallsInProgress: 0
 };

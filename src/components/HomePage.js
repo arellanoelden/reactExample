@@ -4,15 +4,15 @@ import SignUp from './SignUp';
 
 class HomePage extends React.Component {
   render() {
-    /*if(this.props.state.loggedIn === false) {
-      return (
-        <div>
-          <Login login={this.props.state.login} />
-          <SignUp signUp={this.props.state.signUp}/>
-        </div>
-      );
+    if(this.props.state && this.props.state.loggedIn === false) {
+        return (
+          <div>
+            <Login login={this.props.state.login} />
+            <SignUp signUp={this.props.state.signUp} />
+          </div>
+        );
     }
-    else {*/
+    else {
       return (
         <div className="home">
           <h1>Keep Track</h1>
@@ -22,7 +22,7 @@ class HomePage extends React.Component {
              input tag appear but right now too lazy to do so.</p>
         </div>
       );
-    //}
+    }
   }
 }
 

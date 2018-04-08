@@ -17,7 +17,7 @@ class SignUp extends React.Component {
     
     render() {
       return(
-        <form id="userLogin" ref="SignUpForm" onSubmit={this.trySignUp}>
+        <form className="userLogin" ref="SignUpForm" onSubmit={this.trySignUp}>
           <label id="unameLabel"><strong id="unameText">Username: </strong><input type="text" ref="uname" required/></label>
           <label id="pwordLabel"><strong id="pwordText">Password: </strong><input type="text" ref="pword" required/></label>
           <button type="submit" id="signBtn">SignUp</button>

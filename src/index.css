@@ -12,6 +12,11 @@ nav {
   margin-top: 2vh;
   margin-bottom: 2vh;
 }
+nav strong {
+  float: right;
+  margin-right: 2vw;
+  margin-top: 0.5vh;
+}
 .gameName {
   margin-left: 2vw;
   height: 100%;
@@ -159,10 +164,11 @@ hr.border { margin-top: 0; }
   margin: 1vh;
   margin-top: 2vh;
 }
-#userLogin {
+.userLogin {
   border: 1px solid black;
   width: 40vw;
-  margin-left: 2vw;
+  margin-left: 30vw;
+  margin-top: 5vh;
 }
 #loginBtn,#signBtn {
   margin-bottom: 1vh;

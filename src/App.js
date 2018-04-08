@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import './App.css';
 import Header from './components/Header';
+import * as userActions from './actions/userActions';
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
 
 class App extends Component {
 
@@ -10,35 +13,53 @@ class App extends Component {
     this.signUp = this.signUp.bind(this);
     this.state = {
       loggedIn: false,
-      users: [["Elden","pass"],["Chris","pword"]],
       login: this.login,
+      curruser: "",
       signUp: this.signUp
     }
   }
-
+  
   login(e,uname,pword) {
-    for(var i = 0; i < this.state.users.length; i++) {
-      if(uname === this.state.users[i][0] && pword === this.state.users[i][1]) {
+    console.log("should enter");
+    var users = this.props.users;
+    for(var i = 0; i < users.length; i++) {
+      if(uname === users[i]["name"] && pword === users[i]["pword"]) {
         this.setState({loggedIn: true});
+        this.setState({curruser: users[i][0]});
       }
+    }
+    if(this.state.loggedIn === false) {
+      console.log("not logged in");
     }
   }
 
   signUp(e,uname,pword) {
-    var new_users = this.state.users;
-    new_users[new_users.length] = [uname,pword];
-    this.setState({users: new_users});
+    var new_user = {"name": uname, "pword": pword};
+    //console.log(new_user);
+    this.props.actions.saveUser(new_user);
   }
 
   render() {
-    //{React.cloneElement(this.props.children,{state: this.state})}
+   // console.log(this.props)
     return (
       <div>
-        <Header />
-        {this.props.children}
+        <Header user={this.state.curruser} />
+        {React.cloneElement(this.props.children,{state: this.state})}
       </div>
     );
   }
 }
+function mapStateToProps(state, ownProps) {
+  return {
+    users: state.users
+  };
+}
 
-export default App;
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: bindActionCreators(userActions, dispatch)
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
+//export default App;

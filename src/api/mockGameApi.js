@@ -68,12 +68,12 @@ class GameApi {
       setTimeout(() => {
         var index = -1;
         for(var i = 0; i < games.length; i++) {
-          if(games[i].id == game.id) {
+          if(games[i].id === game.id) {
             index = i;
           }
         }
         var newGame = {};
-        if(index != -1) {
+        if(index !== -1) {
           newGame.rating = "10";
           newGame.title = games[index].title;
           newGame.platform = games[index].platform;
