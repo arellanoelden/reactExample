@@ -18,8 +18,7 @@ class HomePage extends React.Component {
           <h1>Keep Track</h1>
           <p>This site is used in order to help me keep track of things I wanna do/play/watch etc. 
              For now I have lists for movies/shows,games, and places to eat. For right now I can keep
-             a list of games with mostly crud support(can't edit since I used strong tags, can make an
-             input tag appear but right now too lazy to do so.</p>
+             a list of games with crud support as well as messages</p>
         </div>
       );
     }

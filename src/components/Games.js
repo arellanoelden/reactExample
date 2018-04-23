@@ -10,25 +10,19 @@ class Games extends React.Component {
 
     constructor(props) {
         super(props);
-        //this.state = {
-        //  games: [["Halo 5","XBOX ONE","4/5"],["Fortnite","PC","4.5/5"],["Overwatch","PC","5/5"]]
-        //}
+        
         this.games = props.games;
         this.deleteGame = this.deleteGame.bind(this);
         this.saveGame = this.saveGame.bind(this);
     }
-  
-    componentWillReceiveProps() {
-      //console.log(this.props)
-    }
 
     saveGame(event) {
       event.preventDefault();
-      //console.log(this.props.games);
       var game = []
       game.title = this.refs.gameName.value;
       game.platform = this.refs.gamePlatform.value;
       game.rating = this.refs.gameRating.value;
+      game.by = this.props.state.curruser;
       this.props.actions.saveGame(game);
       this.refs.gameForm.reset();
     }
@@ -54,24 +48,38 @@ class Games extends React.Component {
             <hr/>
             <form className="gameRow" ref="gameForm" onSubmit={this.saveGame}>
               <label className="nameLabel">
-              Game Name:     
+              Name:     
               <input type="text" id="gameName" ref="gameName" className="form-control" required/>
               </label>
               <label className="platformLabel">
               Platform:     
-              <input type="text" id="gamePlatform" ref="gamePlatform" className="form-control" required/>
+              <select ref="gamePlatform" id="gamePlatform" className="form-control">
+                <option value="Xbox">Xbox</option>
+                <option value="PC">PC</option>
+                <option value="PlayStation">PlayStation</option>
+                <option value="Switch">Switch</option>
+                <option value="Other">Other</option>
+              </select>
               </label>
               <label className="ratingLabel">
               Rating:     
-              <input type="text" id="gameRating" ref="gameRating" className="form-control" required/>
+              <select ref="gameRating" id="gameRating" className="form-control">
+                <option value="5">5</option>
+                <option value="4">4</option>
+                <option value="3">3</option>
+                <option value="2">2</option>
+                <option value="1">1</option>
+              </select>
               </label>
               <button type="submit" className="delete">Add Game</button>
             </form>
             <hr/>
             <div className="titleRow">
-            <strong className="gameName">Title</strong><strong className="gameConsole">Preferred Platform</strong><strong className="gameRating">Rating</strong>
+            <strong className="gameName">Title</strong><strong className="gameConsole">Preferred Platform</strong>
+            <strong className="gameRating">Rating</strong>
+            <strong className="byUser">Put By</strong>
             </div>
-            <hr className="linebreak" />
+            <hr/>
             {this.props.games.map(function(game,i){
                 return <Game key={i} index={i} game={game} delete={(e) => this.deleteGame(e,game)} />;
             },this)}

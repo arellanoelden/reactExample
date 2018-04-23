@@ -11,11 +11,15 @@ class App extends Component {
     super(props);
     this.login = this.login.bind(this);
     this.signUp = this.signUp.bind(this);
+    this.changeUser = this.changeUser.bind(this);
+    this.logout = this.logout.bind(this);
     this.state = {
-      loggedIn: false,
+      loggedIn: true,
       login: this.login,
-      curruser: "",
-      signUp: this.signUp
+      curruser: "Elden",
+      signUp: this.signUp,
+      changeUser: this.changeUser,
+      logout: this.logout
     }
   }
   
@@ -33,6 +37,12 @@ class App extends Component {
     }
   }
 
+  logout(e) {
+    e.preventDefault(); 
+    this.setState({loggedIn: false});
+    this.setState({curruser: ""});
+  }
+  
   signUp(e,uname,pword) {
     var new_user = {"name": uname, "pword": pword};
     //console.log(new_user);
@@ -40,12 +50,16 @@ class App extends Component {
     this.setState({loggedIn: true});
     this.setState({curruser: uname});
   }
+  
+  changeUser(user) {
+    this.setState({curruser: user});
+  }
 
   render() {
    // console.log(this.props)
     return (
       <div>
-        <Header user={this.state.curruser} />
+        <Header user={this.state.curruser} logout={this.logout} />
         {React.cloneElement(this.props.children,{state: this.state})}
       </div>
     );

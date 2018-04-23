@@ -8,19 +8,22 @@ const games = [
     id: "1",
     title: "Halo 5",
     platform: "Xbox",
-    rating: "4/5"
+    rating: "4/5",
+    by: "Chris"
   },
   {
     id: "2",
     title: "Fortnite",
     platform: "PC",
-    rating: "4.5/5"
+    rating: "4.5/5",
+    by: "Erin"
   },
   {
     id: "3",
     title: "Overwatch",
     platform: "PC",
-    rating: "5/5"
+    rating: "5/5",
+    by: "Peter"
   }
 ];
 

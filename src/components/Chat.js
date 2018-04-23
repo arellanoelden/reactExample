@@ -19,16 +19,18 @@ class Chat extends React.Component {
 
     addMsg(e) {
       e.preventDefault();
+      console.log(this.props);
       var new_msgs = this.state.msgs;
-      new_msgs[new_msgs.length] = [this.state.user,this.refs.newMsg.value];
+      new_msgs[new_msgs.length] = [this.props.state.curruser,this.refs.newMsg.value];
       this.setState({msgs: new_msgs});
-      var new_msg = {msg: this.refs.newMsg.value, user: this.state.user};
+      var new_msg = {msg: this.refs.newMsg.value, user: this.props.state.curruser};
       this.props.actions.saveMessage(new_msg);
       this.refs.Msgform.reset();
     }
     
     setUser(e) {
       e.preventDefault();
+      this.props.state.changeUser(this.refs.newUser.value);
       this.setState({user: this.refs.newUser.value});
       this.refs.Userform.reset();
     }
@@ -49,7 +51,7 @@ class Chat extends React.Component {
             <div className="MsgBox">
               <div className="Msgs">
                 {this.props.messages.map(function(msg,i){
-                  if(msg.user === this.state.user) {
+                  if(msg.user === this.props.state.curruser) {
                     return <div key ={i} className="UserContainer"><p className="MsgText">{msg.msg}</p></div>;
                   }
                   else {
